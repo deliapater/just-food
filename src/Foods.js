@@ -16,7 +16,7 @@ const Foods = (props) => {
     <Fragment>
       {!selectedFood && (
         <Fragment>
-          <h4 className="foodTitle" data-testid="food-child-title">Choose from our Menu</h4>
+          <h4 className="foodTitle">Choose from our Menu</h4>
           <ul className="ulFoods">
             {props.foodItems.map((item) => {
               return (
@@ -25,6 +25,7 @@ const Foods = (props) => {
                   className="liFoods"
                   data-id={item.id}
                   onClick={handleSelect}
+                  data-testid="food-el"
                 >
                   <img
                     className="foodImg"

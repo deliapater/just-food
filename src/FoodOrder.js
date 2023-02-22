@@ -27,7 +27,7 @@ const FoodOrder = (props) => {
 
   return (
     <Fragment>
-      <h4 className="selFoodTitle">{selectedFood.name}</h4>
+      <h4 data-testid="sel-food-title" className="selFoodTitle">{selectedFood.name}</h4>
       <img
         className="selFoodImg"
         src={require(`../public/images/${selectedFood.image}`)}

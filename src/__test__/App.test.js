@@ -34,12 +34,24 @@ describe('App tests', () => {
   })
 
   describe('When an user clicks on Order Food button', () => {
-    it('should render Foods', async() => {
+    beforeEach(() => {
       render(<App />);
+    })
+    it('should render food list', async() => {
       const toggleBtn = screen.getByText('Order Food');
       userEvent.click(toggleBtn);
       expect(await screen.findByText('Choose from our Menu')).toBeVisible()
       expect(await screen.findByText('Fried chicken burger - lettuce, tomato, cheese and mayonnaise')).toBeVisible()
+      expect(await screen.findByText('24$')).toBeVisible()
+    })
+    describe('When an user selects a food from the menu', () => {
+      it('should display food details', async() => {
+        const toggleBtn = screen.getByText('Order Food');
+        userEvent.click(toggleBtn);
+        const foodEl = screen.getByTestId('food-el');
+        userEvent.click(foodEl);
+        console.log(foodEl)
+      })
     })
   })
 })
