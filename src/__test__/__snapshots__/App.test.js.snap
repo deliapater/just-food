@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  className="App"
+>
+  <button
+    className="toggleButton"
+    onClick={[Function]}
+  >
+    Order Food
+  </button>
+  <h3
+    className="title"
+  >
+    Just Food Online Shop
+  </h3>
+  <h4
+    className="subTitle"
+  >
+    Menu Availability
+  </h4>
+  <ul
+    className="ulApp"
+    data-testid="food-el"
+  >
+    <li
+      className="liApp"
+    >
+      Chicken Burger
+       - 
+      40
+    </li>
+    <li
+      className="liApp"
+    >
+      Veg Burger
+       - 
+      30
+    </li>
+    <li
+      className="liApp"
+    >
+      Chips
+       - 
+      50
+    </li>
+    <li
+      className="liApp"
+    >
+      Ice Cream
+       - 
+      30
+    </li>
+    <li
+      className="liApp"
+    >
+      Arepa
+       - 
+      33
+    </li>
+  </ul>
+</div>
+`;

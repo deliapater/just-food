@@ -62,7 +62,7 @@ const App = () => {
       {!isChooseFoodPage && (
         <Fragment>
           <h4 className="subTitle">Menu Availability</h4>
-          <ul className="ulApp">
+          <ul className="ulApp" data-testid="food-el">
             {menuItems.map((item) => {
               return (
                 <li key={item.id} className="liApp">
