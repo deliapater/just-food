@@ -50,8 +50,6 @@ const App = () => {
   ]);
 
   return (
-    <>
-    <h1>This is a test</h1>
     <foodItemsContext.Provider value={menuItems}>
     <div className="App">
       <button
@@ -78,7 +76,6 @@ const App = () => {
       {isChooseFoodPage && <Foods foodItems={menuItems}/>}
     </div>
     </foodItemsContext.Provider>
-    </>
   );
 };
 

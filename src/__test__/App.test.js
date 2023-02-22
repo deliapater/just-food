@@ -3,9 +3,14 @@ import React from 'react';
 import App from '../App';
 
 describe('App tests', () => {
-  it('should contains the heading 1', () => {
+  it('should render App', () => {
     render(<App />);
-    const heading = screen.getByText('This is a test');
-    expect(heading).toBeTruthy()
+    expect(App).toBeTruthy()
+  });
+
+  it('should contain toggle btn', () => {
+    render(<App />);
+    const toggleBtn = screen.getByText('Order Food');
+    expect(toggleBtn).toBeTruthy()
   });
 })
