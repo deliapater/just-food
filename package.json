@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^9.0.0",
-    "@testing-library/user-event": "^14.4.3"
+    "@testing-library/user-event": "^14.4.3",
+    "dom-testing-library": "^5.0.0"
   }
 }

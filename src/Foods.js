@@ -25,7 +25,7 @@ const Foods = (props) => {
                   className="liFoods"
                   data-id={item.id}
                   onClick={handleSelect}
-                  data-testid="food-el"
+                  data-testid="food-el-list"
                 >
                   <img
                     className="foodImg"

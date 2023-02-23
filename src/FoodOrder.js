@@ -49,6 +49,7 @@ const FoodOrder = (props) => {
             min="1"
             max="10"
             onChange={handleQuantityChange}
+            data-testid="sel-item-qty"
           />
         </li>
 
