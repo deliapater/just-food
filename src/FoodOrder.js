@@ -75,16 +75,16 @@ const FoodOrder = (props) => {
         </li>
 
         <li>
-          <button className="btn btnOrder" onClick={handleClick}>
+          <button data-testid="submit-order-btn" className="btn btnOrder" onClick={handleClick}>
             Submit Order
           </button>
-          <button className="btn btnReturnMenu" onClick={props.returnToMenu}>
+          <button data-testid="return-to-menu-btn" className="btn btnReturnMenu" onClick={props.returnToMenu}>
             Return to Menu
           </button>
         </li>
         {isOrdered && (
           <li className="liMessage">
-            <label>
+            <label data-testid="order-submited-msg">
               Order Submitted! You will receive an SMS to once ready for pickup.
             </label>
           </li>

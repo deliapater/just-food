@@ -67,6 +67,53 @@ describe("App tests", () => {
         expect(screen.getByRole("button", { name: "Submit Order" }));
         expect(screen.getByRole("button", { name: "Return to Menu" }));
       });
+
+      it("should submit order", async () => {
+        const toggleBtn = screen.getByText("Order Food");
+        await userEvent.click(toggleBtn);
+        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
+        const selectedFoodEl = await waitFor(() =>
+          userEvent.click(screen.getAllByTestId("food-el-list")[0])
+        );
+        userEvent.click(selectedFoodEl);
+        expect(screen.getByRole("button", { name: "Submit Order" }));
+
+        await waitFor(() =>
+          userEvent.click(screen.getByTestId("submit-order-btn"))
+        );
+        expect(await screen.getByTestId("order-submited-msg")).toBeVisible();
+      });
+
+      it("should return to menu after clicking on retun button", async () => {
+        const toggleBtn = screen.getByText("Order Food");
+        await userEvent.click(toggleBtn);
+        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
+        const selectedFoodEl = await waitFor(() =>
+          userEvent.click(screen.getAllByTestId("food-el-list")[0])
+        );
+        userEvent.click(selectedFoodEl);
+
+        const returnToMenuBtn = userEvent.click(
+          screen.getByTestId("return-to-menu-btn")
+        );
+        expect(screen.returnToMenuBtn).toBeFalsy();
+      });
+
+      it("should go back to availability check aftern click on button", async () => {
+        const toggleBtn = screen.getByText("Order Food");
+        await userEvent.click(toggleBtn);
+        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
+        const selectedFoodEl = await waitFor(() =>
+          userEvent.click(screen.getAllByTestId("food-el-list")[0])
+        );
+        userEvent.click(selectedFoodEl);
+
+        const availabilityCheckBtn = await waitFor(() =>
+          userEvent.click(screen.getByText("Availability Check"))
+        );
+        expect(screen.availabilityCheckBtn).toBeFalsy();
+        expect(await screen.getByText("Menu Availability")).toBeVisible();
+      });
     });
   });
 
