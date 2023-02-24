@@ -32,12 +32,14 @@ describe("App tests", () => {
   });
 
   describe("When an user clicks on Order Food button", () => {
+    let toggleBtn;
     beforeEach(() => {
       render(<App />);
+      toggleBtn = screen.getByText("Order Food");
+      userEvent.click(toggleBtn);
     });
     it("should render food list", async () => {
-      const toggleBtn = screen.getByText("Order Food");
-      userEvent.click(toggleBtn);
+      let toggleBtn;
       expect(await screen.findByText("Choose from our Menu")).toBeVisible();
       expect(
         await screen.findByText(
@@ -47,15 +49,17 @@ describe("App tests", () => {
       expect(await screen.findByText("24$")).toBeVisible();
     });
     describe("When an user selects a food from the menu", () => {
-      it("should display food details", async () => {
-        const toggleBtn = screen.getByText("Order Food");
+      let toggleBtn;
+      let selectedFoodEl;
+      beforeEach(async () => {
         await userEvent.click(toggleBtn);
-        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
-
-        const selectedFoodEl = await waitFor(() =>
+        selectedFoodEl = await waitFor(() =>
           userEvent.click(screen.getAllByTestId("food-el-list")[0])
         );
         userEvent.click(selectedFoodEl);
+      });
+
+      it("should display food details", async () => {
         expect(screen.getByTestId("sel-food-title")).toBeVisible();
         expect(
           screen.getByText(
@@ -69,13 +73,6 @@ describe("App tests", () => {
       });
 
       it("should submit order", async () => {
-        const toggleBtn = screen.getByText("Order Food");
-        await userEvent.click(toggleBtn);
-        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
-        const selectedFoodEl = await waitFor(() =>
-          userEvent.click(screen.getAllByTestId("food-el-list")[0])
-        );
-        userEvent.click(selectedFoodEl);
         expect(screen.getByRole("button", { name: "Submit Order" }));
 
         await waitFor(() =>
@@ -85,14 +82,6 @@ describe("App tests", () => {
       });
 
       it("should return to menu after clicking on retun button", async () => {
-        const toggleBtn = screen.getByText("Order Food");
-        await userEvent.click(toggleBtn);
-        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
-        const selectedFoodEl = await waitFor(() =>
-          userEvent.click(screen.getAllByTestId("food-el-list")[0])
-        );
-        userEvent.click(selectedFoodEl);
-
         const returnToMenuBtn = userEvent.click(
           screen.getByTestId("return-to-menu-btn")
         );
@@ -100,14 +89,6 @@ describe("App tests", () => {
       });
 
       it("should go back to availability check aftern click on button", async () => {
-        const toggleBtn = screen.getByText("Order Food");
-        await userEvent.click(toggleBtn);
-        expect(screen.getByAltText("Chicken Burger")).toBeVisible();
-        const selectedFoodEl = await waitFor(() =>
-          userEvent.click(screen.getAllByTestId("food-el-list")[0])
-        );
-        userEvent.click(selectedFoodEl);
-
         const availabilityCheckBtn = await waitFor(() =>
           userEvent.click(screen.getByText("Availability Check"))
         );
