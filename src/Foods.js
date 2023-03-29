@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import "./Foods.css";
+import foodStyles from "./Foods.module.css";
 import FoodOrder from "./FoodOrder";
 const Foods = (props) => {
   const [selectedFood, setSelectedFood] = useState("");
@@ -16,25 +16,25 @@ const Foods = (props) => {
     <Fragment>
       {!selectedFood && (
         <Fragment>
-          <h4 className="foodTitle">Choose from our Menu</h4>
-          <ul className="ulFoods">
+          <h4 className={foodStyles.foodTitle}>Choose from our Menu</h4>
+          <ul className={foodStyles.ulFoods}>
             {props.foodItems.map((item) => {
               return (
                 <li
                   key={item.id}
-                  className="liFoods"
+                  className={foodStyles.liFoods}
                   data-id={item.id}
                   onClick={handleSelect}
                   data-testid="food-el-list"
                 >
                   <img
-                    className="foodImg"
+                    className={foodStyles.foodImg}
                     src={require(`../public/images/${item.image}`)}
                     alt={item.name}
                   />
-                  <div className="foodItem">
-                    <p className="foodDesc">{item.desc}</p>
-                    <p className="foodPrice">{item.price}$</p>
+                  <div className={foodStyles.foodItem}>
+                    <p className={foodStyles.foodDesc}>{item.desc}</p>
+                    <p className={foodStyles.foodPrice}>{item.price}$</p>
                   </div>
                 </li>
               );
